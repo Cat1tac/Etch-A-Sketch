@@ -2,6 +2,9 @@ const sketch = document.querySelector('#container');
 const slider = document.querySelector('#myRange');
 const sliderOutput = document.querySelector('#sliderValue');
 sliderOutput.innerHTML = slider.value;
+const colorChange = document.querySelector('#colorChange');
+const bgChange = document.querySelector('#bgChange');
+const gridLines = document.querySelector('#gridLines');
 
 boxes();
 
@@ -16,15 +19,27 @@ function boxes() {
     const hover = document.querySelectorAll('.block');
     hover.forEach((div) => {
         div.addEventListener('mouseover', function (e) {
-            e.target.style.backgroundColor = 'red';
+            e.target.style.backgroundColor = colorChange.value;
         });
     }); 
-
+    //Changes size of the grid
     slider.addEventListener("change", () => {
         sliderOutput.innerHTML = slider.value;
         newGrid();
     });
-
+    //changes background color
+    bgChange.addEventListener("change", () => {
+        sketch.style.backgroundColor = bgChange.value;
+    });
+    //Toggles grid lines
+    gridLines.addEventListener("click", () => {
+        const vanish = document.querySelectorAll('.block');
+        vanish.forEach(block => {
+            box.style.borderWidth = '0px';
+        });
+    
+        console.log("lol");
+    });
 }
 
 function newGrid() {
@@ -34,7 +49,7 @@ function newGrid() {
     //Removes all blocks
     vanish.forEach(block => {
         block.remove();
-    })
+    });
     
     //Replaces all blocks with new ones
     for (let i = 0; i < square; i++){
@@ -48,7 +63,7 @@ function newGrid() {
     const hover = document.querySelectorAll('.block');
     hover.forEach((div) => {
         div.addEventListener('mouseover', function (e) {
-            e.target.style.backgroundColor = 'red';
+            e.target.style.backgroundColor = colorChange.value;
         });
     });
 }
