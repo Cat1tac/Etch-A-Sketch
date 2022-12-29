@@ -89,7 +89,7 @@ function newGrid() {
         size = slider.value;
         const vanish = document.querySelectorAll('.block');
         console.log(vanish);
-        
+
         if (box.classList.contains('lines')){
             vanish.forEach(div => {
                 div.style.width = ((640 / size) - 2) + "px";
