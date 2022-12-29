@@ -6,9 +6,24 @@
         <script src="javascript.js" defer></script>
     </head>
     <body>
-        <div class="slideContainer">
-            <input type="range" min="1" max="100" value="10" class="slider" id="myRange">
-            <p>Value: <span id="sliderValue"></span></p>
+        <div>
+            <div class="slideContainer">
+                <input type="range" min="1" max="100" value="10" class="slider" id="myRange">
+                <p>Size: <span id="sliderValue"></span></p>
+            </div>
+            <div class="options">
+                <div class="customize">
+                    <input type="color" id="bgChange" name="bg-color"
+                    value="#FFFFFF">
+                    <label for="bg-color">Canvas Color</label>
+                </div>
+                <div class="customize" >
+                    <input type="color" id="colorChange" name="cursor-color"
+                    value="#FF0000">
+                    <label for="cursor-color">Cursor Color</label>
+                </div>
+                <button class="customize" id="gridLines">Grid Lines</button>
+            </div>
         </div>
         <div id="container">
         </div>

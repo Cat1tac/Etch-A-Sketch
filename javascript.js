@@ -2,6 +2,7 @@ const sketch = document.querySelector('#container');
 const slider = document.querySelector('#myRange');
 const sliderOutput = document.querySelector('#sliderValue');
 sliderOutput.innerHTML = slider.value;
+let size = slider.value;
 const colorChange = document.querySelector('#colorChange');
 const bgChange = document.querySelector('#bgChange');
 const gridLines = document.querySelector('#gridLines');
@@ -12,6 +13,7 @@ function boxes() {
     for (let i = 0; i < 100; i++){
         var box = document.createElement('div');
         box.classList.add('block');
+        box.classList.add('lines');
 
         sketch.appendChild(box);
     }
@@ -33,17 +35,30 @@ function boxes() {
     });
     //Toggles grid lines
     gridLines.addEventListener("click", () => {
+        size = slider.value;
         const vanish = document.querySelectorAll('.block');
-        vanish.forEach(block => {
-            box.style.borderWidth = '0px';
+        console.log(vanish);
+        vanish.forEach(div => {
+            div.classList.toggle('lines');
         });
-    
-        console.log("lol");
+
+        if (box.classList.contains('lines')){
+            vanish.forEach(div => {
+                div.style.width = ((640 / size) - 2) + "px";
+                div.style.height = ((640 / size) - 2) + "px";
+            });
+
+        } else {
+            vanish.forEach(div => {
+                div.style.width = (640 / size) + "px";
+                div.style.height = (640 / size) + "px";
+            });
+        }
     });
 }
 
 function newGrid() {
-    const size = slider.value;
+    size = slider.value;
     const square = size * size;
     const vanish = document.querySelectorAll('.block');
     //Removes all blocks
@@ -55,8 +70,10 @@ function newGrid() {
     for (let i = 0; i < square; i++){
         var box = document.createElement('div');
         box.classList.add('block');
+        box.classList.add('lines');
         box.style.width = ((640 / size) - 2) + "px";
         box.style.height = ((640 / size) - 2) + "px";
+
         sketch.appendChild(box);
     }
     
@@ -65,5 +82,25 @@ function newGrid() {
         div.addEventListener('mouseover', function (e) {
             e.target.style.backgroundColor = colorChange.value;
         });
+    });
+
+    //Toggles grid lines
+    gridLines.addEventListener("click", () => {
+        size = slider.value;
+        const vanish = document.querySelectorAll('.block');
+        console.log(vanish);
+        
+        if (box.classList.contains('lines')){
+            vanish.forEach(div => {
+                div.style.width = ((640 / size) - 2) + "px";
+                div.style.height = ((640 / size) - 2) + "px";
+            });
+
+        } else {
+            vanish.forEach(div => {
+                div.style.width = (640 / size) + "px";
+                div.style.height = (640 / size) + "px";
+            });
+        }
     });
 }
